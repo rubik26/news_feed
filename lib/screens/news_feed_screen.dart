@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:news_feed/screens/add_new_screen.dart';
+import 'package:news_feed/screens/new_details.dart';
 
 class NewsFeedScreen extends StatelessWidget {
   const NewsFeedScreen({super.key});
@@ -41,10 +42,23 @@ class NewsFeedScreen extends StatelessWidget {
             itemBuilder: (ctx, index) {
               return ListTile(
                 title: Text(newsDocs[index]['title']),
-                subtitle: Text(newsDocs[index]['content']),
+                subtitle: Text(newsDocs[index]['content'].toString().length > 50
+                    ? '${newsDocs[index]['content'].toString().substring(0, 50)}...'
+                    : newsDocs[index]['content']),
                 leading: newsDocs[index]['imageUrl'] != null
                     ? Image.network(newsDocs[index]['imageUrl'])
                     : null,
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => NewDetails(
+                        title: newsDocs[index]['title'],
+                        content: newsDocs[index]['content'],
+                        imageUrl: newsDocs[index]['imageUrl'],
+                      ),
+                    ),
+                  );
+                },
               );
             },
           );
