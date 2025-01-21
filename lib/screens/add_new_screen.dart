@@ -118,7 +118,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                   ),
                   const SizedBox(height: 16),
                   Container(
-                    height: 120, // Увеличьте высоту по вашему усмотрению
+                    height: 120,
                     child: TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Content',
