@@ -99,36 +99,44 @@ class _AddNewScreenState extends State<AddNewScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Title',
-                      border: OutlineInputBorder(),
-                    ),
-                    textAlign: TextAlign.center,
-                    textCapitalization: TextCapitalization.words,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a title';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      _enteredTitle = value;
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    height: 120,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        labelText: 'Content',
+                        labelText: 'Title',
                         border: OutlineInputBorder(),
                       ),
                       textAlign: TextAlign.center,
-                      textCapitalization: TextCapitalization.sentences,
+                      textCapitalization: TextCapitalization.words,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter content';
+                          return 'Please enter a title';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        _enteredTitle = value;
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    height: 300,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Theme.of(context).colorScheme.surface,
+                        hintText: 'Введите текст поста...',
+                        hintStyle: TextStyle(color: Colors.grey.shade600),
+                        contentPadding: const EdgeInsets.all(16),
+                        border: OutlineInputBorder(),
+                      ),
+                      textAlign: TextAlign.start,
+                      textCapitalization: TextCapitalization.sentences,
+                      maxLines: null,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Пожалуйста, введите текст';
                         }
                         return null;
                       },
